@@ -4,7 +4,27 @@
 [![npm package][npm-badge]][npm]
 [![Coveralls][coveralls-badge]][coveralls]
 
-Describe react-avenue here.
+
+## Getting started
+
+```
+yarn add react-avenue
+```
+
+```javascript
+import React from 'react'
+import { Avenue } from 'react-avenue'
+
+export default function App() {
+  return (
+    <Avenue render={
+      (path) => (
+        <p>Current path: {path}</p>
+      )
+    } />
+}
+```
+
 
 [build-badge]: https://img.shields.io/travis/user/repo/master.png?style=flat-square
 [build]: https://travis-ci.org/user/repo
