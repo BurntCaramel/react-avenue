@@ -35,6 +35,7 @@ export default function App() {
 import React from 'react'
 import { Avenue } from 'react-avenue'
 import processorForRoutes from 'react-avenue/es/processorForRoutes'
+import LandingPage from './components/LandingPage'
 import Product from './components/Product'
 import ProductsList from './components/ProductsList'
 import ContactPage from './components/ContactPage'
@@ -49,22 +50,27 @@ const processPath = processorForRoutes([
 export default function App() {
   return (
     <Avenue processPath={processPath} render={
-      ({ route, path }) => (
-        route.products ? (
-          route.products.id ? (
-            <Product
-              id={ route.products.id }
-              activeSection={ route.products.reviews ? 'reviews' : 'overview' }
-            />
+      ({ route, path }) => <main>
+        {
+          route.home ? (
+            <LandingPage />
+          ) : route.products ? (
+            route.products.id ? (
+              <Product
+                id={ route.products.id }
+                activeSection={ route.products.reviews ? 'reviews' : 'overview' }
+              />
+            ) : (
+              <ProductsList />
+            )
+          ) : route.contact ? (
+            <ContactPage />
           ) : (
-            <ProductsList />
+            <p>Page not found: {path}</p>
           )
-        ) : route.contact ? (
-          <ContactPage />
-        ) : (
-          <p>Page not found: {path}</p>
         )
-      )
+      }
+      </main>
     } />
 }
 ```
