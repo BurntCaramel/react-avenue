@@ -20,7 +20,8 @@
     "prepublishOnly": "npm run test && npm run build"
   },
   "dependencies": {
-    "history": "^4.7.2"
+    "history": "^4.7.2",
+    "path-to-regexp": "^2.1.0"
   },
   "peerDependencies": {
     "react": "15.x"
