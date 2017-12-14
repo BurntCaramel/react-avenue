@@ -1,6 +1,6 @@
 import pathToRegexp from 'path-to-regexp'
 
-function fromPaths(paths) {
+function processorForRoutes(paths) {
   const routes = paths.reduce((routes, path) => {
     let keys = []
     const re = pathToRegexp(path, keys)
@@ -12,8 +12,6 @@ function fromPaths(paths) {
     })
     return routes
   }, [])
-
-  console.log('routes', routes)
 
   return (path) => {
     if (path === '/') {
@@ -44,11 +42,8 @@ function fromPaths(paths) {
         }
         else {
           const key = token.name
-          // let propData = {}
           const value = result[keyIndex + 1]
-          // propData.value = value
           nestedData[key] = value
-          // nestedData = propData
           keyIndex += 1
         }
       })
@@ -65,4 +60,4 @@ function fromPaths(paths) {
   }
 }
 
-export default fromPaths
+export default processorForRoutes

@@ -1,47 +1,67 @@
 import expect from 'expect'
 import React from 'react'
-import {render, unmountComponentAtNode} from 'react-dom'
+import { render, unmountComponentAtNode } from 'react-dom'
 
 import { Avenue, history } from 'src/'
 
 describe('Avenue', () => {
   let node
+  let catchCount = 0
+
+  class Catcher extends React.Component {
+    componentDidCatch(error, info) {
+      catchCount += 1
+      console.error('componentDidCatch', error, info)
+    }
+
+    render() {
+      return this.props.children
+    }
+  }
 
   beforeEach(() => {
     node = document.createElement('div')
     history.push('/')
+
+    catchCount = 0
   })
 
   afterEach(() => {
     unmountComponentAtNode(node)
+
+    expect(catchCount).toBe(0)
   })
 
   it('displays the path', (done) => {
     render(
-      <Avenue
-        render={ (path) => <p>path: {path}</p> }
-      />
+      <Catcher>
+        <Avenue
+          render={ ({ path, route }) => <p>path: {path}; route: {route}</p> }
+        />
+      </Catcher>
       , node, () => {
-      expect(node.textContent).toContain('path: /')
+      expect(node.textContent).toContain('path: /; route: /')
 
       history.push('/about')
-
       setTimeout(() => {
-        expect(node.textContent).toContain('path: /about')
+        expect(node.textContent).toContain('path: /about; route: /about')
+        done()
       }, 10)
-
-      done()
     })
   })
 
-  it('handles pathToData', () => {
+  it('uses processPath', (done) => {
     render(
-      <Avenue
-        pathToData={ (path) => ({ abc: 'def', path }) }
-        render={ (data) => <p>abc: { data.abc }; path: {data.path}</p> }
-      />
+      <Catcher>
+        <Avenue
+          processPath={ (path) => ({ abc: 'def', path }) }
+          render={ ({ route }) => <p>abc: { route.abc }; path: {route.path}</p> }
+        />
+      </Catcher>
       , node, () => {
       expect(node.textContent).toContain('abc: def; path: /')
+      
+      done()
     })
   })
 })

@@ -8,8 +8,12 @@
 ## Getting started
 
 ```
+npm i -S react-avenue
+# or yarn:
 yarn add react-avenue
 ```
+
+### Basic
 
 ```javascript
 import React from 'react'
@@ -18,8 +22,48 @@ import { Avenue } from 'react-avenue'
 export default function App() {
   return (
     <Avenue render={
-      (path) => (
+      ({ path }) => (
         <p>Current path: {path}</p>
+      )
+    } />
+}
+```
+
+### Route params
+
+```javascript
+import React from 'react'
+import { Avenue } from 'react-avenue'
+import processorForRoutes from 'react-avenue/es/processorForRoutes'
+import Product from './components/Product'
+import ProductsList from './components/ProductsList'
+import ContactPage from './components/ContactPage'
+
+const processPath = processorForRoutes([
+  '/products',
+  '/products/:id',
+  '/products/:id/reviews',
+  '/contact',
+])
+
+export default function App() {
+  return (
+    <Avenue processPath={processPath} render={
+      ({ route, path }) => (
+        route.products ? (
+          route.products.id ? (
+            <Product
+              id={ route.products.id }
+              activeSection={ route.products.reviews ? 'reviews' : 'overview' }
+            />
+          ) : (
+            <ProductsList />
+          )
+        ) : route.contact ? (
+          <ContactPage />
+        ) : (
+          <p>Page not found: {path}</p>
+        )
       )
     } />
 }

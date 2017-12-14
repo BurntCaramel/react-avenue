@@ -5,22 +5,23 @@ const identity = (a) => a
 
 class Avenue extends Component {
   static defaultProps = {
-    pathToData: identity,
+    processPath: identity,
   }
 
   state = {
-    data: this.props.pathToData(window.location.pathname),
+    path: window.location.pathname,
   }
 
   render() {
-    const { data } = this.state
-    return this.props.render(data)
+    const { path } = this.state
+    const route = this.props.processPath(path)
+    return this.props.render({ path, route, history })
   }
 
   componentDidMount() {
     this.unlisten = history.listen((location, action) => {
       this.setState({
-        data: this.props.pathToData(location.pathname)
+        path: location.pathname
       })
     })
   }
