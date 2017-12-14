@@ -26,11 +26,11 @@ export default function App() {
 ```
 
 
-[build-badge]: https://img.shields.io/travis/user/repo/master.png?style=flat-square
-[build]: https://travis-ci.org/user/repo
+[build-badge]: https://img.shields.io/travis/RoyalIcing/react-avenue/master.png?style=flat-square
+[build]: https://travis-ci.org/RoyalIcing/react-avenue
 
-[npm-badge]: https://img.shields.io/npm/v/npm-package.png?style=flat-square
-[npm]: https://www.npmjs.org/package/npm-package
+[npm-badge]: https://img.shields.io/npm/v/react-avenue.png?style=flat-square
+[npm]: https://www.npmjs.org/package/react-avenue
 
-[coveralls-badge]: https://img.shields.io/coveralls/user/repo/master.png?style=flat-square
-[coveralls]: https://coveralls.io/github/user/repo
+[coveralls-badge]: https://img.shields.io/coveralls/RoyalIcing/react-avenue/master.png?style=flat-square
+[coveralls]: https://coveralls.io/github/RoyalIcing/react-avenue
