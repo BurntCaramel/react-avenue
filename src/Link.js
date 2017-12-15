@@ -12,7 +12,13 @@ function onClick(event) {
 }
 
 function Link(props) {
-  return <a { ...props } onClick={ onClick } />
+  return <a 
+    { ...props } 
+    onClick={ props.onClick ? (...args) => {
+      onClick(...args)
+      props.onClick(...args)
+    } : onClick }
+  />
 }
 
 export default Link

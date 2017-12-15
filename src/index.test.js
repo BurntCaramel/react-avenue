@@ -2,7 +2,7 @@ import expect from 'expect'
 import React from 'react'
 import { render, unmountComponentAtNode } from 'react-dom'
 
-import { Avenue, history } from 'src/'
+import { Avenue, history } from './'
 
 describe('Avenue', () => {
   let node
