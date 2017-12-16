@@ -123,4 +123,33 @@ describe('Link', () => {
     })
   })
 
+  it('handles external URLs', (done) => {
+    let clickCount = 0
+    const onClick = (event) => {
+      clickCount += 1
+    }
+
+    render(
+      <Catcher>
+        <Link
+          id='link'
+          href='https://www.example.com/'
+          onClick={ onClick }
+        />
+      </Catcher>
+      , node, () => {
+
+      expect(clickCount).toEqual(0)
+
+      ReactTestUtils.Simulate.click($('#link'))
+
+      setTimeout(() => {
+        expect(clickCount).toEqual(1)
+
+        done()
+      }, 10)
+
+    })
+  })
+
 })
