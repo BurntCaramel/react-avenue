@@ -13,6 +13,12 @@ npm i -S react-avenue
 yarn add react-avenue
 ```
 
+## Benefits
+
+- Small: [4KB gzipped](https://bundlephobia.com/result?p=react-avenue@0.2.0), [almost 1/3 of react-router-dom](https://bundlephobia.com/result?p=react-router-dom@4.2.2)
+- Simple loading: implement lifecycle methods once, rather than for each `<Route>`’s component
+
+
 ### Basic
 
 ```javascript
@@ -41,6 +47,7 @@ import ProductsList from './components/ProductsList'
 import ContactPage from './components/ContactPage'
 
 const processPath = processorForRoutes([
+  '/',
   '/products',
   '/products/:id',
   '/products/:id/reviews',
