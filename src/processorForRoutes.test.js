@@ -21,6 +21,7 @@ describe('processorForRoutes', () => {
       '/products/:id',
       '/products/:id/reviews',
       '/products/:id/photos/:photoID',
+      '/products/:id/photos/:photoID/:photoIndex',
     ])
 
     expect(processPath('/')).toEqual({
@@ -67,6 +68,25 @@ describe('processorForRoutes', () => {
         id: '4',
         photos: {
           photoID: '12'
+        }
+      }
+    })
+
+    expect(processPath('/products/4/photos/12/2')).toEqual({
+      products: {
+        id: '4',
+        photos: {
+          photoID: '12',
+          photoIndex: '2'
+        }
+      }
+    })
+    expect(processPath('/products/4/photos/12/2/')).toEqual({
+      products: {
+        id: '4',
+        photos: {
+          photoID: '12',
+          photoIndex: '2'
         }
       }
     })
