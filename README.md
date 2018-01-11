@@ -75,10 +75,10 @@ export default function App() {
           ) : (
             <p>Page not found: {path}</p>
           )
-        )
-      }
+        }
       </main>
     } />
+  )
 }
 ```
 
