@@ -82,6 +82,22 @@ export default function App() {
 }
 ```
 
+### `<Link>`
+
+```javascript
+import React from 'react'
+import { Link } from 'react-avenue'
+
+export default function PrimaryNav() {
+  return (
+    <nav>
+      <Link href='/products'>Products</Link>
+      <Link href='/contact'>Contact</Link>
+    </nav>
+  )
+}
+```
+
 
 [build-badge]: https://img.shields.io/travis/RoyalIcing/react-avenue/master.png?style=flat-square
 [build]: https://travis-ci.org/RoyalIcing/react-avenue
